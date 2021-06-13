@@ -1,24 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+
 import './App.css';
+import Lists from './components/Lists'
+import AddToList from './components/AddToList'
+
+export interface IState {
+  people:{
+    name: string
+    age: number
+    photo: string
+    note?: string
+  }[]
+}
 
 function App() {
+const [people,setPeople] = useState<IState['people']>([
+  {
+    name:'mandeep',
+    age:21,
+    photo:'https://avatars.githubusercontent.com/u/70088342?v=4',
+    note:'hello bro'
+  }
+])
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <h1>Hello it's my first project with typescript</h1>
+    <Lists people={people} />
+    <AddToList people={people} setPeople={setPeople} />
     </div>
   );
 }
